@@ -1,4 +1,6 @@
-package com.example.androidpediabyorellana.taller1_00147124
+package com.example.androidpediabyorellana.taller1_00147124.data
+
+import com.example.androidpediabyorellana.taller1_00147124.model.Question
 
 val quizQuestions = listOf(
     Question(

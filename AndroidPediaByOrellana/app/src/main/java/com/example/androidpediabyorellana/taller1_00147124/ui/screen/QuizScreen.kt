@@ -1,4 +1,4 @@
-package com.example.androidpediabyorellana.taller1_00147124
+package com.example.androidpediabyorellana.taller1_00147124.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,11 +25,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androidpediabyorellana.taller1_00147124.data.quizQuestions
+import com.example.androidpediabyorellana.taller1_00147124.ui.components.OptionButton
+import com.example.androidpediabyorellana.taller1_00147124.ui.components.QuestionText
 import com.example.androidpediabyorellana.ui.theme.AndroidPediaByOrellanaTheme
 
 
 @Composable
-fun AppEstudio(modifier: Modifier = Modifier){
+fun AppEstudio(modifier: Modifier = Modifier) {
     var currentStep by remember { mutableIntStateOf(1) }
     var preguntaActual by remember { mutableIntStateOf(0) }
     var puntaje by remember { mutableIntStateOf(0) }
@@ -39,16 +42,17 @@ fun AppEstudio(modifier: Modifier = Modifier){
     when (currentStep) {
 
         1 -> {
-            Column(modifier= Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Text("AndroidPedia")
                 Text("¿Cuánto sabes de Android?")
                 Text("Emily Eunice Orellana Mendez - 00147124")
 
-                Button(onClick = {
-                    currentStep = 2
-                }) {
+                Button(onClick = { currentStep = 2 }) {
                     Text("Comenzar Quiz")
                 }
             }
@@ -57,14 +61,16 @@ fun AppEstudio(modifier: Modifier = Modifier){
         2 -> {
             val pregunta = quizQuestions[preguntaActual]
 
-
-            Column(modifier= Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Text("Pregunta ${preguntaActual + 1} de 3")
                 Text("Puntaje: $puntaje / 3")
 
-                Text(pregunta.question)
+                QuestionText(pregunta)
 
                 pregunta.options.forEachIndexed { index, opcion ->
 
@@ -74,9 +80,9 @@ fun AppEstudio(modifier: Modifier = Modifier){
                         else -> Color.LightGray
                     }
 
-                    Button( modifier = Modifier
-                        .width(200.dp)
-                        .height(50.dp),
+                    OptionButton(
+                        texto = opcion,
+                        buttonColor = buttonColor,
                         onClick = {
                             if (!respondido) {
                                 respuestaSeleccionada = index
@@ -86,23 +92,18 @@ fun AppEstudio(modifier: Modifier = Modifier){
                                     puntaje++
                                 }
                             }
-                        },
-                        colors = ButtonDefaults.buttonColors(containerColor = buttonColor)
-                    ){
-                        Text(opcion)
-                    }
+                        }
+                    )
+
                     Spacer(modifier = Modifier.height(8.dp))
                 }
 
                 if (respondido) {
-                    Box(modifier = Modifier.fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(16.dp)) {
-                        Text(pregunta.funFact,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth())
-                    }
-
+                    Text(
+                        text = pregunta.funFact,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(16.dp)
+                    )
 
                     Button(onClick = {
                         if (preguntaActual < 2) {
@@ -120,8 +121,11 @@ fun AppEstudio(modifier: Modifier = Modifier){
         }
 
         3 -> {
-            Column(modifier= Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
                 Text("Obtuviste $puntaje de 3")
 

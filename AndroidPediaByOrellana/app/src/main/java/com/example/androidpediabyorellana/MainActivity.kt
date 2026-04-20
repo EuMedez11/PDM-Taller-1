@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.androidpediabyorellana.taller1_00147124.AppEstudio
+import com.example.androidpediabyorellana.taller1_00147124.ui.screen.AppEstudio
 import com.example.androidpediabyorellana.ui.theme.AndroidPediaByOrellanaTheme
 
 class MainActivity : ComponentActivity() {

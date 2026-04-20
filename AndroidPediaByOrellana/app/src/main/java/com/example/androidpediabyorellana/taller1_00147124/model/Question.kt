@@ -1,4 +1,4 @@
-package com.example.androidpediabyorellana.taller1_00147124
+package com.example.androidpediabyorellana.taller1_00147124.model
 
 data class Question(
     val id: Int,
